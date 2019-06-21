@@ -698,8 +698,8 @@
   *      O-- FRONT --+
   *    (0,0)
   */
-  #define X_PROBE_OFFSET_FROM_EXTRUDER -48  // X offset: -left  +right  [of the nozzle]
-  #define Y_PROBE_OFFSET_FROM_EXTRUDER -10  // Y offset: -front +behind [the nozzle]
+  #define X_PROBE_OFFSET_FROM_EXTRUDER -42  // X offset: -left  +right  [of the nozzle]
+  #define Y_PROBE_OFFSET_FROM_EXTRUDER -16  // Y offset: -front +behind [the nozzle]
 #endif
 
 //===========================================================================
