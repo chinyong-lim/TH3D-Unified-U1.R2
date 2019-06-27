@@ -134,6 +134,7 @@
 //#define ANET_A8
 //#define ANET_E10
 //#define ANET_E12
+//#define ANET_E16
 
 // Choose bed size for A2 only
 // IGNORE THESE OPTIONS FOR MACHINES OTHER THAN THE A2
@@ -566,8 +567,9 @@
 // ***********************  MKS Gen L Based Printer   ***********************
 // *************  Select 'Arduino Mega 2560' from Tools > Board *************
 // **** Please refer to the TH3D MKS Gen L Documentation Guide for Setup ****
-// **** Endstop/Motors: changing from 0 to 1 inverts the logic/direction ****
-// ********** TH3D MKS Gen L Documentation Coming end of April 2019 *********
+// *Endstop/Motors/Homing: changing from 0 to 1 inverts the logic/direction *
+// ****** We have a detailed guide here: http://mksguide.th3dstudio.com *****
+// ******** Use the code GENLGUIDEHALFOFF for 50% off our PDF Guide *********
 //===========================================================================
 
 //#define MKS_PRINTER
@@ -581,6 +583,10 @@
 #define MKS_X_ENDSTOP 0
 #define MKS_Y_ENDSTOP 0
 #define MKS_Z_ENDSTOP 0
+
+// Homing Settings
+#define X_HOME_LOCATION 0
+#define Y_HOME_LOCATION 0
 
 // Steps per MM Settings
 #define MKS_X_STEPS 80
@@ -841,10 +847,11 @@
 //#define POWER_LOSS_RECOVERY
 
 // MOTION SETTINGS ---------------------------------
-// If you do not like the new Junction Deviation (Jerk) and/or S-Curve Acceleration then you can uncomment the below lines to disable each feature.
+// There are 2 new acceleration/jerk controls available in this firmware that can result is better print quality and
+// smoother movement. To try each out just enable them below.
 // Due to Anet board restrictions this is always disabled on those machines.
-//#define JUNCTION_DEVIATION_DISABLE
-//#define S_CURVE_ACCELERATION_DISABLE
+//#define JUNCTION_DEVIATION_ON
+//#define S_CURVE_ACCELERATION_ON
 
 //================================================================================================
 // Language - This is provided for convenience and is unsupported with included product support.
@@ -866,6 +873,6 @@
 #include "Configuration_beta.h"
 #include "Configuration_backend.h"
 
-#define UNIFIED_VERSION "TH3D U1.R2.11a"
+#define UNIFIED_VERSION "TH3D U1.R2.13"
 
 #endif // CONFIGURATION_H

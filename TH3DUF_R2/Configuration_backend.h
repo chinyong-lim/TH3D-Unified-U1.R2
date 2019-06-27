@@ -932,8 +932,8 @@
     #define X_MIN_POS X_HOME_LOCATION
     #define Y_MIN_POS Y_HOME_LOCATION
   #else
-    #define X_MIN_POS 0
-    #define Y_MIN_POS 0
+    #define X_MIN_POS -7
+    #define Y_MIN_POS -5
   #endif
   
   #define ENCODER_PULSES_PER_STEP 4
@@ -1787,11 +1787,10 @@
 #endif //end taz5
 
 //ANET Model Settings
-#if ENABLED(ANET_A2) || ENABLED(ANET_A6) || ENABLED(ANET_A8) || ENABLED(ANET_E10) || ENABLED(ANET_E12)
+#if ENABLED(ANET_A2) || ENABLED(ANET_A6) || ENABLED(ANET_A8) || ENABLED(ANET_E10) || ENABLED(ANET_E12) || ENABLED(ANET_E16)
   #define SLIM_1284P
   
-  #define JUNCTION_DEVIATION_DISABLE
-  #define S_CURVE_ACCELERATION_DISABLE
+  #define ANET_PRINTER
   
   #ifndef MOTHERBOARD
     #define MOTHERBOARD BOARD_ANET_10 
@@ -2289,6 +2288,20 @@
   #define USE_XMIN_PLUG
   #define USE_YMAX_PLUG
   #define USE_ZMIN_PLUG
+#elif ENABLED(MKS_PRINTER)
+  #if X_HOME_LOCATION == 0
+    #define USE_XMIN_PLUG
+  #else
+    #define USE_XMAX_PLUG
+  #endif
+  
+  #if Y_HOME_LOCATION == 0
+    #define USE_YMIN_PLUG
+  #else
+    #define USE_YMAX_PLUG
+  #endif
+  
+  #define USE_ZMIN_PLUG
 #else
   #define USE_XMIN_PLUG
   #define USE_YMIN_PLUG
@@ -2372,9 +2385,11 @@
   #endif
 #endif
 
-#if DISABLED(S_CURVE_ACCELERATION_DISABLE)
+#if ENABLED(S_CURVE_ACCELERATION_ON)
   #if DISABLED(POWER_LOSS_RECOVERY)
-    #define S_CURVE_ACCELERATION
+    #if DISABLED(ANET_PRINTER)
+      #define S_CURVE_ACCELERATION
+    #endif
   #endif
 #endif
 
@@ -2408,6 +2423,20 @@
 #elif ENABLED(COPYMASTER3D_300)
   #define X_HOME_DIR -1
   #define Y_HOME_DIR 1
+  #define Z_HOME_DIR -1
+#elif ENABLED(MKS_PRINTER)
+  #if X_HOME_LOCATION == 0
+    #define X_HOME_DIR -1
+  #else
+    #define X_HOME_DIR 1
+  #endif
+  
+  #if Y_HOME_LOCATION == 0
+    #define Y_HOME_DIR -1
+  #else
+    #define Y_HOME_DIR 1
+  #endif
+  
   #define Z_HOME_DIR -1
 #else
   #define X_HOME_DIR -1
